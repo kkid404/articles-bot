@@ -14,6 +14,10 @@ const ArticleService = {
         return await Article.findOne({ id: id })
     },
 
+    async getAll() {
+        return await Article.find({});
+    },
+
     // изменение статьи
     async update(id, updateData) {
         return await Article.findOneAndUpdate({ id: id }, updateData, { new: true })

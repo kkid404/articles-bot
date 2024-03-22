@@ -57,7 +57,7 @@ AddArticleScene.on('text', async (ctx) => {
 
 
 AddArticleScene.on('photo', async (ctx) => {
-    console.log(ctx.message); // Выводим содержимое photo в консоль для отладки
+    // СДЕЛАТЬ ПРОВЕРКУ НА НАЛИЧИЕ ЗАГОЛОВКА И ОПИСАНИЯ
     if (ctx.message.photo && ctx.message.photo.length > 0) {
         ctx.session.photo = ctx.message.photo;
         const photoId = ctx.session.photo[ctx.session.photo.length - 1].file_id;
