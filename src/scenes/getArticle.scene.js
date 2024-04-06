@@ -9,13 +9,12 @@ const { start } = require('../keyboards/start.keyboard');
 const GetArticleScene = new BaseScene('getArticle');
 
 GetArticleScene.enter(async (ctx) => {
-    const kb = await articles()
-    await ctx.reply(ruMessage.message.get_article, kb);
+    await ctx.reply(ruMessage.message.get_article, articles());
 });
 
 GetArticleScene.on('text', async (ctx) => {
     const userInput = ctx.message.text;
-
+    // обработка кнопки назад
     if (userInput == ruMessage.keyboard.back[0]) {
         
         await ctx.scene.enter('backScene')
@@ -24,8 +23,8 @@ GetArticleScene.on('text', async (ctx) => {
     }
     
     try {
+        // поиск статьи по заголовку
         const allArticles = await articleService.getAll();
-        
         let foundArticle = null;
         for (const article of allArticles) { 
             if (userInput === article.title) {
@@ -35,21 +34,23 @@ GetArticleScene.on('text', async (ctx) => {
         
         if (foundArticle) {
             if (foundArticle.media !== '') {
-                // Отправка сообщения с фотографией, текстом и заголовком
+                // Отправка статьи с фотографией
                 await ctx.replyWithPhoto(foundArticle.media, {
-                    caption: `Заголовок: ${foundArticle.title}\nОписание: ${foundArticle.description}`, reply_markup: articles()
+                    caption: `${foundArticle.title}\n\n${foundArticle.description}`, reply_markup: articles()
                 });
             } else {
-                await ctx.reply(`Заголовок: ${foundArticle.title}\nОписание: ${foundArticle.description}`, articles());
+                // Отправка статьи без фото
+                await ctx.reply(`${foundArticle.title}\n\n${foundArticle.description}`, articles());
             }
             
         } else {
-            const kb = await articles()
-            await ctx.reply('Статья не найдена.', kb);
+            await ctx.reply(ruMessage.system.article_not_found, articles());
         }
     } catch (error) {
         console.error(error);
-        await ctx.reply('Произошла ошибка при поиске статьи', start());
+        await ctx.reply(ruMessage.system.article_error, start());
+        ctx.scene.leave();
+        return
     }
 })
 
