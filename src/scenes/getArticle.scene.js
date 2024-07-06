@@ -9,7 +9,8 @@ const { start } = require('../keyboards/start.keyboard');
 const GetArticleScene = new BaseScene('getArticle');
 
 GetArticleScene.enter(async (ctx) => {
-    await ctx.reply(ruMessage.message.get_article, articles());
+    const keyboard = await articles();
+    await ctx.reply(ruMessage.message.get_article, keyboard);
 });
 
 GetArticleScene.on('text', async (ctx) => {
