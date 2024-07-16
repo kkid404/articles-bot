@@ -11,7 +11,7 @@ const ArticleService = {
 
     // получение статьи по id
     async getById(id) {
-        return await Article.findOne({ id: id })
+        return await Article.findOne({ _id: id })
     },
 
     async getAll() {
@@ -20,12 +20,12 @@ const ArticleService = {
 
     // изменение статьи
     async update(id, updateData) {
-        return await Article.findOneAndUpdate({ id: id }, updateData, { new: true })
+        return await Article.findOneAndUpdate({ _id: id }, updateData, { new: true })
     },
 
     // удаление статьи
     async delete(id) {
-        return await Article.findOneAndDelete({ id: id })
+        return await Article.findOneAndDelete({ _id: id })
     },
 
 }
