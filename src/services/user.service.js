@@ -14,6 +14,11 @@ const UserService = {
         return await User.findOne({ tg_id: tgId })
     },
 
+    // получение статьи по id
+    async getById(id) {
+        return await User.findOne({ _id: id })
+    },
+
     // изменение пользователя
     async updateUser(tgId, updateData) {
         return await User.findOneAndUpdate({ tg_id: tgId }, updateData, { new: true })

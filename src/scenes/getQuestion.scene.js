@@ -37,7 +37,11 @@ GetQuestionScene.on('text', async (ctx) => {
         
         if (foundQuestion) {
             await ctx.reply(`${foundQuestion.text}`, replyQuestion());
-            console.log(Object.keys(ruMessage.keyboard.question_back))
+
+            ctx.session.questionUserId = foundQuestion.user
+            ctx.session.questionId = foundQuestion._id
+
+
             
         } else {
             await ctx.reply(ruMessage.system.question_not_found, articles());
@@ -52,9 +56,15 @@ GetQuestionScene.on('text', async (ctx) => {
 
 GetQuestionScene.action(Object.keys(ruMessage.keyboard.question_back), async (ctx) => {
     const action = ctx.callbackQuery.data;
-    if (action == Object.keys(ruMessage.keyboard.question_back)[0]){
-        
+    if (action === Object.keys(ruMessage.keyboard.question_back)[0]) {
+        await ctx.scene.enter('replyQuestionScene');
+        return
+    } else {
+        await ctx.scene.enter('backScene');
+        ctx.scene.leave();
+        return
     }
-  });
+    
+});
 
 module.exports = GetQuestionScene;

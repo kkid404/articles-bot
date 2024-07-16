@@ -26,7 +26,7 @@ SendQuestionScene.on('text', async (ctx) => {
         await ctx.reply(ruMessage.system.error_question, start())
     }
     ctx.scene.leave();
-    })
+})
 
 
 module.exports = SendQuestionScene;

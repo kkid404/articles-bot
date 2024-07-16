@@ -22,7 +22,7 @@ const QuestionService = {
 
     // удаление вопроса
     async delete(id) {
-        return await QuestionModel.findOneAndDelete({ id: id })
+        return await QuestionModel.findOneAndDelete({ _id: id })
     },
 
 }
