@@ -34,8 +34,11 @@ AddArticleScene.on('text', async (ctx) => {
                     })
                     await ctx.reply(ruMessage.message.save_article, start())
                 } catch (error) {
-                    console.log(error)
-                    await ctx.reply(ruMessage.system.error_article, start())
+                    if(error.code == 11000) {
+                        await ctx.reply(ruMessage.system.double_article_error, start())
+                    }else{
+                        await ctx.reply(ruMessage.system.error_article, start())
+                    }
                 }
                 ctx.scene.leave();
                 break;
@@ -45,6 +48,7 @@ AddArticleScene.on('text', async (ctx) => {
                 break;
             } else {
                 await ctx.reply(ruMessage.system.answer_error)
+                
             }
             break;
         default:
@@ -69,8 +73,12 @@ AddArticleScene.on('photo', async (ctx) => {
             })
             await ctx.reply(ruMessage.message.save_article, start())
         } catch (error) {
-            console.log(error)
-            await ctx.reply(ruMessage.system.error_article, start())
+            if(error.code == 11000) {
+                await ctx.reply(ruMessage.system.double_article_error, start())
+            }else{
+                await ctx.reply(ruMessage.system.error_article, start())
+                console.log(error)
+            }
         }
     } 
     ctx.scene.leave();

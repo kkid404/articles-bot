@@ -31,6 +31,7 @@
         "error_token" : "Ошибка: Токен бота не найден. Убедитесь, что вы задали TELEGRAM_BOT_TOKEN в .env файле.",
         "error_protected" : "Доступ запрещен!",
         "error_article" : "Ошибка создания статьи.",
+        "double_article_error" : "Такая статья уже есть.",
         "answer_error" : "Не понял твой ответ, попробуй еще раз.",
         "error_question" : "Ошибка отправки вопроса",
         "article_not_found" : "Статья не найдена.",
