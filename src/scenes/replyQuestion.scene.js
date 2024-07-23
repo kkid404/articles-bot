@@ -18,8 +18,6 @@ replyQuestionScene.on('text', async (ctx) => {
 
     const answer = ctx.message.text;
 
-    console.log(ctx.session.questionId)
-
     const kb = await start();
     try {
         await ctx.telegram.sendMessage(tgQuestionUserId.tg_id, answer);

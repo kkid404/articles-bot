@@ -35,10 +35,21 @@ GetArticleScene.on('text', async (ctx) => {
         
         if (foundArticle) {
             if (foundArticle.media !== '') {
+                const caption =  `${foundArticle.title}\n\n${foundArticle.description}`
+
+                const photoParts = caption.match(/[\s\S]{1,1024}/g);
+
+                const messageParts = caption.slice(photoParts[0].length).match(/[\s\S]{1,4000}/g);
+
                 // Отправка статьи с фотографией
                 await ctx.replyWithPhoto(foundArticle.media, {
-                    caption: `${foundArticle.title}\n\n${foundArticle.description}`, reply_markup: articles()
+                    caption: photoParts[0], reply_markup: articles()
                 });
+                if (messageParts && messageParts.length > 0) {
+                    for (const part of messageParts) {
+                        await ctx.reply(part);
+                    }
+                }
             } else {
                 // Отправка статьи без фото
                 await ctx.reply(`${foundArticle.title}\n\n${foundArticle.description}`, articles());
