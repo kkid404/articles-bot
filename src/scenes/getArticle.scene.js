@@ -42,7 +42,7 @@ GetArticleScene.on('text', async (ctx) => {
                 const messageParts = caption.slice(photoParts[0].length).match(/[\s\S]{1,4000}/g);
 
                 // Отправка статьи с фотографией
-                await ctx.replyWithPhoto(foundArticle.media, {
+                await ctx.replyWithPhoto(foundArticle.media[0], {
                     caption: photoParts[0], reply_markup: articles()
                 });
                 if (messageParts && messageParts.length > 0) {
