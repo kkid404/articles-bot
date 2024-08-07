@@ -29,7 +29,7 @@ AddArticleScene.on('text', async (ctx) => {
     switch (step) {
         case 1:
             ctx.session.title = ctx.message.text
-            await ctx.reply(ruMessage.message.add_description)
+            await ctx.reply(ruMessage.message.add_description, back())
             break;
         case 2:
             ctx.session.description = ctx.message.text
