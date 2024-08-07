@@ -4,17 +4,27 @@ const ruMessage = require('../lang/ru.json');
 const { yes_no } = require('../keyboards/yes_no.keyboard');
 const articleService = require('../services/article.service');
 const { start } = require('../keyboards/admin.keyboard');
+const { back } = require('../keyboards/back.keyboard');
 
 
 const AddArticleScene = new BaseScene('addArticle');
 
 AddArticleScene.enter(async (ctx) => {
     ctx.session.step = 1;
-    await ctx.reply(ruMessage.message.add_title);
+    await ctx.reply(ruMessage.message.add_title, back());
 });
 
 AddArticleScene.on('text', async (ctx) => {
     const step = ctx.session.step;
+
+    const userInput = ctx.message.text;
+    // обработка кнопки назад
+    if (userInput == ruMessage.keyboard.back[0]) {
+        
+        await ctx.scene.enter('backScene')
+        ctx.scene.leave();
+        return
+    }
 
     switch (step) {
         case 1:
