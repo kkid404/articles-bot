@@ -72,7 +72,7 @@ GetArticleScene.on('text', async (ctx) => {
 
                     if (messageParts && messageParts.length > 0) {
                         for (const part of messageParts) {
-                            await ctx.reply(part);
+                            await ctx.reply(part, await articles());
                         }
                     }
                 } catch (error) {
