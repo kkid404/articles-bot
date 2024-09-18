@@ -3,8 +3,10 @@ const { Schema } = mongoose;
 
 const questionSchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    text: { type: String, required: true },
+    name: { type: String, required: true },
+    aboutTattoo: { type: String, required: true },
+    sazeAndPlace : { type: String, required: true },
 })
 
-const Question = mongoose.model('Question', questionSchema);
+const Question = mongoose.model('Lead', questionSchema);
 module.exports = Question;
