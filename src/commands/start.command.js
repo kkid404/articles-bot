@@ -1,6 +1,7 @@
 const ruMessage = require('../lang/ru.json');
 const { start } = require('../keyboards/start.keyboard');
 const userService = require('../services/user.service');
+const path = require('path');
 
 module.exports = {
     command: 'start',
@@ -21,6 +22,7 @@ module.exports = {
             })
         }
 
-        await ctx.reply(ruMessage.message.start, start());
+        const photoPath6 = path.join(__dirname, '../img/6.jpg');
+        await ctx.sendPhoto({ source: photoPath6 },{ caption: ruMessage.message.start})
     },
 };
