@@ -23,6 +23,12 @@ module.exports = {
         }
 
         const photoPath6 = path.join(__dirname, '../img/6.jpg');
-        await ctx.sendPhoto({ source: photoPath6 },{ caption: ruMessage.message.start})
+        await ctx.replyWithPhoto(
+            { source: photoPath6 },
+            {
+              caption: ruMessage.message.start,
+              ...start()
+            }
+          );
     },
 };
