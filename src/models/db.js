@@ -12,7 +12,7 @@ function connectToMongo() {
   const data = process.env.DB_NAME || 'mydatabase'; // Имя базы данных, по умолчанию 'mydatabase'
 
   // Формирование строки подключения к MongoDB
-  const mongoURI = `mongodb://${login}:${password}@${host}:${port}/${data}?authSource=admin`;
+  const mongoURI = `mongodb://${login}:${password}@${host}:${port}/${data}`;
 
   // Подключение к MongoDB с использованием строки подключения и настроек
   mongoose.connect(mongoURI, {
