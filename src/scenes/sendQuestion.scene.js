@@ -66,7 +66,7 @@ SendQuestionScene.on('text', async (ctx) => {
             ctx.scene.leave();
             break;
         default:
-            await ctx.reply(ruMessage.system.error_article);
+            await ctx.reply(ruMessage.system.error_article, start());
             ctx.scene.leave();
             break;
     }
