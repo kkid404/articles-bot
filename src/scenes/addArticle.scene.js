@@ -53,7 +53,7 @@ AddArticleScene.on('text', async (ctx) => {
                 ctx.scene.leave();
                 break;
             } else if (ctx.message.text == ruMessage.keyboard.yes_no[0]) {
-                await ctx.reply(ruMessage.message.send_photo)
+                await ctx.reply(ruMessage.message.send_photos)
                 ctx.session.step = 3;
                 break;
             } else {
