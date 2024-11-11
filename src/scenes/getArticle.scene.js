@@ -57,7 +57,7 @@ GetArticleScene.on('text', async (ctx) => {
         }
         
         if (foundArticle) {
-            if (foundArticle.media !== '') {
+            if (foundArticle.media.length !== 0) {
                 const caption = `${foundArticle.title}\n\n${foundArticle.description}`;
                 
 

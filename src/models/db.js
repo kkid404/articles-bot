@@ -16,8 +16,6 @@ function connectToMongo() {
 
   // Подключение к MongoDB с использованием строки подключения и настроек
   mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
     directConnection: true
   }).then(() => {
     // Логирование успешного подключения
